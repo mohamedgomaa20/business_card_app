@@ -88,12 +88,30 @@ class BusinessCardAppScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Text(
-                        "Mohamed Gomaa",
-                        style: TextStyle(
-                          fontFamily: "Pacifico",
-                          fontSize: 32,
-                          color: Colors.white,
+
+                      ShaderMask(
+                        shaderCallback: (bounds) => LinearGradient(
+                          colors: [accentColor, secondaryAccent],
+                        ).createShader(bounds),
+                        child: Text(
+                          "Mohamed Gomaa",
+                          style: TextStyle(
+                            shadows: [
+                              Shadow(
+                                color: accentColor.withOpacity(.6),
+                                blurRadius: 15,
+                              ),
+                              Shadow(
+                                color: secondaryAccent.withOpacity(.3),
+                                blurRadius: 15,
+                              ),
+                            ],
+                            fontFamily: "Pacifico",
+                            fontSize: 48,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            letterSpacing: 1.5,
+                          ),
                         ),
                       ),
                       const Text(
