@@ -5,9 +5,9 @@ class BusinessCardAppScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const primaryColor = Color(0xFF0F1419);
-    const accentColor = Color(0xFF00D9FF);
-    const secondaryAccent = Color(0xFF00B894);
+    const Color primaryColor = Color(0xFF0F1419);
+    const Color accentColor = Color(0xFF00D9FF);
+    const Color secondaryAccent = Color(0xFF00B894);
 
     return Scaffold(
       backgroundColor: primaryColor,
@@ -114,14 +114,41 @@ class BusinessCardAppScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Text(
-                        "Flutter Developer",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xff6c8090),
-                          fontWeight: FontWeight.bold,
+                      const SizedBox(height: 12),
+
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 24,
+                        ),
+
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(
+                            color: accentColor.withOpacity(.3),
+                            width: 1.5,
+                          ),
+                          gradient: LinearGradient(
+                            colors: [
+                              accentColor.withOpacity(.15),
+                              secondaryAccent.withOpacity(.15),
+                            ],
+                          ),
+                        ),
+
+                        child: Text(
+                          "Flutter Developer".toUpperCase(),
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: accentColor,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 3,
+                          ),
                         ),
                       ),
+
+                      const SizedBox(height: 28),
+
                       const Divider(
                         color: Color(0xff6c8090),
                         indent: 30,
@@ -129,6 +156,7 @@ class BusinessCardAppScreen extends StatelessWidget {
                         height: 10,
                         thickness: 1.2,
                       ),
+                      const SizedBox(height: 12),
 
                       Card(
                         color: Colors.white,
