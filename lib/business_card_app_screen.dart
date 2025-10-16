@@ -88,6 +88,7 @@ class BusinessCardAppScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 32),
 
                       ShaderMask(
                         shaderCallback: (bounds) => LinearGradient(
@@ -148,15 +149,21 @@ class BusinessCardAppScreen extends StatelessWidget {
                       ),
 
                       const SizedBox(height: 28),
-
-                      const Divider(
-                        color: Color(0xff6c8090),
-                        indent: 30,
-                        endIndent: 30,
-                        height: 10,
-                        thickness: 1.2,
+                      Container(
+                        width: 80,
+                        height: 3,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                            colors: [
+                              accentColor,
+                              secondaryAccent,
+                              secondaryAccent.withOpacity(.3),
+                            ],
+                          ),
+                        ),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 32),
 
                       Card(
                         color: Colors.white,
