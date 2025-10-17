@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'business_card_app_screen.dart';
+import 'screens/business_card_app_screen.dart';
 
 void main() {
   runApp(const BirthDayCard());
