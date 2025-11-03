@@ -17,6 +17,7 @@ dependencies:
   loading_animation_widget: ^1.2.0
 
 dev_dependencies:
+  flutter_native_splash: ^2.4.7
   flutter_launcher_icons: ^0.14.4
   flutter_test:
     sdk: flutter
@@ -26,6 +27,13 @@ flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/logo.jpg"
+
+flutter_native_splash:
+  image: assets/logo.jpg
+  android: true
+  ios: true
+  color: '#ffffff'
+
 
 flutter:
   uses-material-design: true
