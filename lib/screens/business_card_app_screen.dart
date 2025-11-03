@@ -106,6 +106,7 @@ class BusinessCardAppScreen extends StatelessWidget {
                           _launchUrl('mailto:${userModel.email}');
                         },
                       ),
+
                       BuildInfoCard(
                         icon: Icons.code_rounded,
                         text: userModel.githubUrl,
