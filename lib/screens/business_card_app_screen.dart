@@ -1,4 +1,3 @@
-import 'package:business_card_app/utils/constants.dart';
 import 'package:business_card_app/widgets/build_custom_divider.dart';
 import 'package:business_card_app/widgets/build_image_section.dart';
 import 'package:business_card_app/widgets/build_info_card.dart';
@@ -6,23 +5,42 @@ import 'package:business_card_app/widgets/custom_button.dart';
 import 'package:business_card_app/widgets/name_and_job_title_section.dart';
 import 'package:business_card_app/widgets/qr_code_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../models/user_model.dart';
 import '../utils/app_colors.dart';
 
 class BusinessCardAppScreen extends StatelessWidget {
   const BusinessCardAppScreen({super.key});
 
+  final UserModel userModel = const UserModel(
+    githubUrl: 'https://github.com/mohamedgomaa20',
+    linkedinUrl: 'https://www.linkedin.com/in/mohamed-gomaa-874133284',
+    email: '20monagy@gmail.com',
+    phone: '(+20) 1002418816',
+    name: 'Mohamed Gomaa',
+    jobTitle: 'Flutter Developer',
+    imagePath: "assets/images/free_p.jpg",
+  );
+
+  void _showQRCodeDialog(context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return QrCodeDialog(userModel: userModel);
+      },
+    );
+  }
+
+  Future<void> _launchUrl(String url) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    void _showQRCodeDialog() {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return QrCodeDialog();
-        },
-      );
-    }
-
     return Scaffold(
       backgroundColor: primaryColor,
       body: Stack(
@@ -65,18 +83,42 @@ class BusinessCardAppScreen extends StatelessWidget {
                 child: Center(
                   child: Column(
                     children: [
-                      BuildImageSection(),
+                      BuildImageSection(imagePath: userModel.imagePath),
                       const SizedBox(height: 32),
-                      NameAndJobTitleSection(),
+                      NameAndJobTitleSection(
+                        jobTitle: userModel.jobTitle,
+                        name: userModel.name,
+                      ),
                       const SizedBox(height: 28),
                       BuildCustomDivider(),
                       const SizedBox(height: 32),
-                      BuildInfoCard(icon: Icons.call, text: phone),
-                      BuildInfoCard(icon: Icons.mail_rounded, text: email),
-                      BuildInfoCard(icon: Icons.code_rounded, text: githubUrl),
+                      BuildInfoCard(
+                        icon: Icons.call,
+                        text: userModel.phone,
+                        onTap: () {
+                          _launchUrl('tel:${userModel.phone}');
+                        },
+                      ),
+                      BuildInfoCard(
+                        icon: Icons.mail_rounded,
+                        text: userModel.email,
+                        onTap: () {
+                          _launchUrl('mailto:${userModel.email}');
+                        },
+                      ),
+                      BuildInfoCard(
+                        icon: Icons.code_rounded,
+                        text: userModel.githubUrl,
+                        onTap: () {
+                          _launchUrl(userModel.githubUrl);
+                        },
+                      ),
                       BuildInfoCard(
                         icon: Icons.business_rounded,
-                        text: linkedinUrl,
+                        text: userModel.linkedinUrl,
+                        onTap: () {
+                          _launchUrl(userModel.linkedinUrl);
+                        },
                       ),
                       const SizedBox(height: 36),
                       Row(
@@ -86,7 +128,7 @@ class BusinessCardAppScreen extends StatelessWidget {
                             icon: Icons.qr_code_2_outlined,
                             text: "QR Code",
                             isPrimary: true,
-                            onTap: () => _showQRCodeDialog(),
+                            onTap: () => _showQRCodeDialog(context),
                           ),
                           const SizedBox(width: 16),
                           CustomButton(

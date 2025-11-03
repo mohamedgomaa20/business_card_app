@@ -1,10 +1,16 @@
-import 'package:business_card_app/utils/constants.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
 
 class NameAndJobTitleSection extends StatelessWidget {
-  const NameAndJobTitleSection({super.key});
+  const NameAndJobTitleSection({
+    super.key,
+    required this.name,
+    required this.jobTitle,
+  });
+
+  final String name;
+  final String jobTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +21,7 @@ class NameAndJobTitleSection extends StatelessWidget {
             colors: [accentColor, secondaryAccent],
           ).createShader(bounds),
           child: Text(
-            myName,
+            name,
             style: TextStyle(
               shadows: [
                 Shadow(color: accentColor.withOpacity(.6), blurRadius: 15),

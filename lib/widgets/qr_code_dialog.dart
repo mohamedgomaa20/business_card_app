@@ -1,14 +1,16 @@
 import 'dart:ui' as ui;
 
+import 'package:business_card_app/models/user_model.dart';
 import 'package:business_card_app/utils/app_colors.dart';
-import 'package:business_card_app/utils/constants.dart';
-import 'package:business_card_app/widgets/loading_dialog.dart';
+ import 'package:business_card_app/widgets/loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
 class QrCodeDialog extends StatefulWidget {
-  const QrCodeDialog({super.key});
+  const QrCodeDialog({super.key, required this.userModel});
+
+  final UserModel userModel;
 
   @override
   State<QrCodeDialog> createState() => _QrCodeDialogState();
@@ -56,7 +58,8 @@ class _QrCodeDialogState extends State<QrCodeDialog> {
               ),
               child: QrImageView(
                 size: 200,
-                data: '$githubUrl | $linkedinUrl | $email | $phone',
+                data:
+                    '${widget.userModel.githubUrl} | ${widget.userModel.linkedinUrl} | ${widget.userModel.email} | ${widget.userModel.phone}',
                 backgroundColor: primaryColor,
                 foregroundColor: accentColor,
               ),
@@ -70,7 +73,8 @@ class _QrCodeDialogState extends State<QrCodeDialog> {
                     try {
                       buildLoadingDialog(context);
                       final qrPainter = QrPainter(
-                        data: '$githubUrl | $linkedinUrl | $email | $phone',
+                        data:
+                            '${widget.userModel.githubUrl} | ${widget.userModel.linkedinUrl} | ${widget.userModel.email} | ${widget.userModel.phone}',
 
                         version: QrVersions.auto,
                         gapless: true,

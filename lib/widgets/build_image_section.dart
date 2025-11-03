@@ -1,10 +1,10 @@
-import 'package:business_card_app/utils/constants.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
 
 class BuildImageSection extends StatelessWidget {
-  const BuildImageSection({super.key});
+  const BuildImageSection({super.key, required this.imagePath});
+  final String imagePath ;
 
   @override
   Widget build(BuildContext context) {
