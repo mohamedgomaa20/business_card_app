@@ -26,7 +26,7 @@ class ButtonSection extends StatelessWidget {
           text: "QR Code",
           isPrimary: true,
           delay: 150,
-          onTap: () => _showQRCodeDialog(context),
+          onTap: () => showCustomDialog(context),
         ),
         const SizedBox(width: 16),
         CustomButton(

@@ -137,7 +137,6 @@ class _CustomButtonState extends State<CustomButton>
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-
                     color: widget.isPrimary ? whiteColor : accentColor,
                     letterSpacing: .8,
                   ),

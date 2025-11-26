@@ -2,10 +2,29 @@ import 'dart:ui' as ui;
 
 import 'package:business_card_app/models/user_model.dart';
 import 'package:business_card_app/utils/app_colors.dart';
- import 'package:business_card_app/widgets/loading_dialog.dart';
+import 'package:business_card_app/widgets/loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
+
+Future showCustomDialog(BuildContext context) {
+  return showGeneralDialog(
+    context: context,
+    transitionDuration: Duration(milliseconds: 400),
+    pageBuilder: (context, _, __) {
+      return QrCodeDialog(userModel: userModel);
+    },
+
+    transitionBuilder: (context, animation, secondaryAnimation, child) {
+      return ScaleTransition(
+        scale: Tween<double>(begin: 0, end: 1).animate(
+          CurvedAnimation(parent: animation, curve: Curves.easeOutBack),
+        ),
+        child: FadeTransition(opacity: animation, child: child),
+      );
+    },
+  );
+}
 
 class QrCodeDialog extends StatefulWidget {
   const QrCodeDialog({super.key, required this.userModel});
@@ -22,7 +41,7 @@ class _QrCodeDialogState extends State<QrCodeDialog> {
     return Dialog(
       backgroundColor: primaryColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusGeometry.circular(20),
+        borderRadius: BorderRadius.circular(20),
 
         side: BorderSide(color: accentColor, width: 2),
       ),
@@ -112,7 +131,7 @@ class _QrCodeDialogState extends State<QrCodeDialog> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: accentColor,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(12),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   icon: Icon(Icons.share, color: blackColor),
@@ -131,7 +150,7 @@ class _QrCodeDialogState extends State<QrCodeDialog> {
                     backgroundColor: Colors.transparent,
                     side: BorderSide(width: 2, color: accentColor),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(12),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   icon: Icon(Icons.close, color: accentColor),
