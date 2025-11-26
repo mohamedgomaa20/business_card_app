@@ -87,14 +87,15 @@ class _QrCodeDialogState extends State<QrCodeDialog> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton.icon(
+                DialogButton(
+                  text: "Share",
+                  icon: Icons.share,
                   onPressed: () async {
                     try {
                       buildLoadingDialog(context);
                       final qrPainter = QrPainter(
                         data:
                             '${widget.userModel.githubUrl} | ${widget.userModel.linkedinUrl} | ${widget.userModel.email} | ${widget.userModel.phone}',
-
                         version: QrVersions.auto,
                         gapless: true,
                         color: accentColor,
@@ -105,9 +106,7 @@ class _QrCodeDialogState extends State<QrCodeDialog> {
                       final byteData = await image.toByteData(
                         format: ui.ImageByteFormat.png,
                       );
-
                       if (mounted) Navigator.pop(context);
-
                       if (byteData != null) {
                         await Share.shareXFiles([
                           XFile.fromData(
@@ -128,43 +127,52 @@ class _QrCodeDialogState extends State<QrCodeDialog> {
                       }
                     }
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: accentColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  icon: Icon(Icons.share, color: blackColor),
-                  label: Text(
-                    "Share",
-                    style: TextStyle(
-                      color: blackColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  isPrimary: true,
                 ),
-
-                ElevatedButton.icon(
+                DialogButton(
+                  text: "cancel",
                   onPressed: () => Navigator.pop(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    side: BorderSide(width: 2, color: accentColor),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  icon: Icon(Icons.close, color: accentColor),
-                  label: Text(
-                    "Cancel",
-                    style: TextStyle(
-                      color: accentColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  isPrimary: false,
+                  icon: Icons.close,
                 ),
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class DialogButton extends StatelessWidget {
+  const DialogButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.isPrimary = false,
+    required this.icon,
+  });
+
+  final String text;
+  final VoidCallback onPressed;
+  final bool isPrimary;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton.icon(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: isPrimary ? accentColor : Colors.transparent,
+        side: BorderSide(width: 2, color: accentColor),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+      icon: Icon(icon, color: isPrimary ? blackColor : accentColor),
+      label: Text(
+        text,
+        style: TextStyle(
+          color: isPrimary ? blackColor : accentColor,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
