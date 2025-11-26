@@ -46,13 +46,13 @@ class _QrCodeDialogState extends State<QrCodeDialog> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
-                  color: accentColor.withOpacity(.3),
+                  color: accentColor.withValues(alpha: .3),
                   width: 1.5,
                 ),
                 gradient: LinearGradient(
                   colors: [
-                    whiteColor.withOpacity(.08),
-                    whiteColor.withOpacity(.04),
+                    whiteColor.withValues(alpha: .08),
+                    whiteColor.withValues(alpha: .04),
                   ],
                 ),
               ),

@@ -24,8 +24,8 @@ class NameAndJobTitleSection extends StatelessWidget {
             name,
             style: TextStyle(
               shadows: [
-                Shadow(color: accentColor.withOpacity(.6), blurRadius: 15),
-                Shadow(color: secondaryAccent.withOpacity(.3), blurRadius: 15),
+                Shadow(color: accentColor.withValues(alpha: .6), blurRadius: 15),
+                Shadow(color: secondaryAccent.withValues(alpha: .3), blurRadius: 15),
               ],
               fontFamily: "Raleway",
               fontSize: 40,
@@ -43,11 +43,11 @@ class NameAndJobTitleSection extends StatelessWidget {
 
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            border: Border.all(color: accentColor.withOpacity(.3), width: 1.5),
+            border: Border.all(color: accentColor.withValues(alpha: .3), width: 1.5),
             gradient: LinearGradient(
               colors: [
-                accentColor.withOpacity(.15),
-                secondaryAccent.withOpacity(.15),
+                accentColor.withValues(alpha: .15),
+                secondaryAccent.withValues(alpha: .15),
               ],
             ),
           ),

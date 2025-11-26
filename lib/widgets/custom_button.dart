@@ -25,18 +25,18 @@ class CustomButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           border: !isPrimary
-              ? Border.all(color: accentColor.withOpacity(.5), width: 2)
+              ? Border.all(color: accentColor.withValues(alpha: .5), width: 2)
               : null,
 
           gradient: isPrimary
               ? LinearGradient(
-                  colors: [accentColor, accentColor.withOpacity(.8)],
+                  colors: [accentColor, accentColor.withValues(alpha: .8)],
                 )
               : null,
           boxShadow: isPrimary
               ? [
                   BoxShadow(
-                    color: accentColor.withOpacity(.4),
+                    color: accentColor.withValues(alpha: .4),
                     blurRadius: 20,
                     offset: Offset(0, 8),
                   ),

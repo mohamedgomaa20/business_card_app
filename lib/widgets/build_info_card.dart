@@ -25,8 +25,8 @@ class BuildInfoCard extends StatelessWidget {
           border: Border.all(color: Colors.white.withOpacity(0.1), width: 1.5),
           gradient: LinearGradient(
             colors: [
-              accentColor.withOpacity(.05),
-              accentColor.withOpacity(0.02),
+              accentColor.withValues(alpha: .05),
+              accentColor.withValues(alpha: 0.02),
             ],
           ),
         ),
@@ -38,8 +38,8 @@ class BuildInfoCard extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: LinearGradient(
                 colors: [
-                  accentColor.withOpacity(.2),
-                  accentColor.withOpacity(.1),
+                  accentColor.withValues(alpha: .2),
+                  accentColor.withValues(alpha: .1),
                 ],
               ),
             ),

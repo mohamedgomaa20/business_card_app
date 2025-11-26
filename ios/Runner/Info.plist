@@ -45,14 +45,14 @@
 		<true/>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true/>
-		<array>
-			<string>tel</string>
-			<string>mailto</string>
-			<string>sms</string>
-			<string>http</string>
-			<string>https</string>
-		</array>
 		<key>UIStatusBarHidden</key>
 		<false/>
+        <array>
+        	<string>tel</string>
+       		<string>mailto</string>
+      		<string>sms</string>
+       		<string>http</string>
+        	<string>https</string>
+    	</array>
 	</dict>
 </plist>

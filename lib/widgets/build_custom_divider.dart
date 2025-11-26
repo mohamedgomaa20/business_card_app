@@ -16,7 +16,7 @@ class BuildCustomDivider extends StatelessWidget {
           colors: [
             accentColor,
             secondaryAccent,
-            secondaryAccent.withOpacity(.3),
+            secondaryAccent.withValues(alpha: .3),
           ],
         ),
       ),

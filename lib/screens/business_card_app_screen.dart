@@ -43,111 +43,116 @@ class BusinessCardAppScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryColor,
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  primaryColor,
-                  primaryColor.withOpacity(.8),
-                  const Color(0xFF1a2332),
-                ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              primaryColor,
+              primaryColor.withValues(alpha: .8),
+              darkGray,
+            ],
+          ),
+        ),
+
+        child: Stack(
+          children: [
+            Positioned(
+              top: -50,
+              right: -50,
+              child: CircleGradient(),
+            ),
+
+            SafeArea(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        BuildImageSection(imagePath: userModel.imagePath),
+                        const SizedBox(height: 32),
+                        NameAndJobTitleSection(
+                          jobTitle: userModel.jobTitle,
+                          name: userModel.name,
+                        ),
+                        const SizedBox(height: 28),
+                        BuildCustomDivider(),
+                        const SizedBox(height: 32),
+                        BuildInfoCard(
+                          icon: Icons.call,
+                          text: userModel.phone,
+                          onTap: () {
+                            _launchUrl('tel:${userModel.phone}');
+                          },
+                        ),
+                        BuildInfoCard(
+                          icon: Icons.mail_rounded,
+                          text: userModel.email,
+                          onTap: () {
+                            _launchUrl('mailto:${userModel.email}');
+                          },
+                        ),
+
+                        BuildInfoCard(
+                          icon: Icons.code_rounded,
+                          text: userModel.githubUrl,
+                          onTap: () {
+                            _launchUrl(userModel.githubUrl);
+                          },
+                        ),
+                        BuildInfoCard(
+                          icon: Icons.business_rounded,
+                          text: userModel.linkedinUrl,
+                          onTap: () {
+                            _launchUrl(userModel.linkedinUrl);
+                          },
+                        ),
+                        const SizedBox(height: 36),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CustomButton(
+                              icon: Icons.qr_code_2_outlined,
+                              text: "QR Code",
+                              isPrimary: true,
+                              onTap: () => _showQRCodeDialog(context),
+                            ),
+                            const SizedBox(width: 16),
+                            CustomButton(
+                              icon: Icons.download_rounded,
+                              text: "DownLoad",
+                              isPrimary: false,
+                              onTap: () {},
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
-          Positioned(
-            top: -50,
-            right: -50,
-            child: Container(
+          ],
+        ),
+      ),
+    );
+  }
+
+  Container CircleGradient() {
+    return Container(
               width: 300,
               height: 300,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    accentColor.withOpacity(.1),
-                    accentColor.withOpacity(0),
+                    accentColor.withValues(alpha: .1),
+                    accentColor.withValues(alpha: 0),
                   ],
                 ),
               ),
-            ),
-          ),
-
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Center(
-                  child: Column(
-                    children: [
-                      BuildImageSection(imagePath: userModel.imagePath),
-                      const SizedBox(height: 32),
-                      NameAndJobTitleSection(
-                        jobTitle: userModel.jobTitle,
-                        name: userModel.name,
-                      ),
-                      const SizedBox(height: 28),
-                      BuildCustomDivider(),
-                      const SizedBox(height: 32),
-                      BuildInfoCard(
-                        icon: Icons.call,
-                        text: userModel.phone,
-                        onTap: () {
-                          _launchUrl('tel:${userModel.phone}');
-                        },
-                      ),
-                      BuildInfoCard(
-                        icon: Icons.mail_rounded,
-                        text: userModel.email,
-                        onTap: () {
-                          _launchUrl('mailto:${userModel.email}');
-                        },
-                      ),
-
-                      BuildInfoCard(
-                        icon: Icons.code_rounded,
-                        text: userModel.githubUrl,
-                        onTap: () {
-                          _launchUrl(userModel.githubUrl);
-                        },
-                      ),
-                      BuildInfoCard(
-                        icon: Icons.business_rounded,
-                        text: userModel.linkedinUrl,
-                        onTap: () {
-                          _launchUrl(userModel.linkedinUrl);
-                        },
-                      ),
-                      const SizedBox(height: 36),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomButton(
-                            icon: Icons.qr_code_2_outlined,
-                            text: "QR Code",
-                            isPrimary: true,
-                            onTap: () => _showQRCodeDialog(context),
-                          ),
-                          const SizedBox(width: 16),
-                          CustomButton(
-                            icon: Icons.download_rounded,
-                            text: "DownLoad",
-                            isPrimary: false,
-                            onTap: () {},
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+            );
   }
 }
