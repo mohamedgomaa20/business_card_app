@@ -40,7 +40,7 @@ class _BuildInfoCardState extends State<BuildInfoCard>
       CurvedAnimation(
         parent: pressController,
         curve: Curves.easeOut,
-        reverseCurve: Curves.elasticOut,
+
       ),
     );
 
