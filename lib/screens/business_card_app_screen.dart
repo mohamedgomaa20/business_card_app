@@ -58,11 +58,7 @@ class BusinessCardAppScreen extends StatelessWidget {
 
         child: Stack(
           children: [
-            Positioned(
-              top: -50,
-              right: -50,
-              child: CircleGradient(),
-            ),
+            Positioned(top: -50, right: -50, child: CircleGradient()),
 
             SafeArea(
               child: SingleChildScrollView(
@@ -73,16 +69,13 @@ class BusinessCardAppScreen extends StatelessWidget {
                       children: [
                         BuildImageSection(imagePath: userModel.imagePath),
                         const SizedBox(height: 32),
-                        NameAndJobTitleSection(
-                          jobTitle: userModel.jobTitle,
-                          name: userModel.name,
-                        ),
-                        const SizedBox(height: 28),
-                        BuildCustomDivider(),
+                        NameAndJobTitleSection(userModel: userModel),
                         const SizedBox(height: 32),
+
                         BuildInfoCard(
                           icon: Icons.call,
                           text: userModel.phone,
+                          delay: 0,
                           onTap: () {
                             _launchUrl('tel:${userModel.phone}');
                           },
@@ -90,6 +83,7 @@ class BusinessCardAppScreen extends StatelessWidget {
                         BuildInfoCard(
                           icon: Icons.mail_rounded,
                           text: userModel.email,
+                          delay: 150,
                           onTap: () {
                             _launchUrl('mailto:${userModel.email}');
                           },
@@ -98,6 +92,7 @@ class BusinessCardAppScreen extends StatelessWidget {
                         BuildInfoCard(
                           icon: Icons.code_rounded,
                           text: userModel.githubUrl,
+                          delay: 300,
                           onTap: () {
                             _launchUrl(userModel.githubUrl);
                           },
@@ -105,6 +100,7 @@ class BusinessCardAppScreen extends StatelessWidget {
                         BuildInfoCard(
                           icon: Icons.business_rounded,
                           text: userModel.linkedinUrl,
+                          delay: 450,
                           onTap: () {
                             _launchUrl(userModel.linkedinUrl);
                           },
@@ -142,17 +138,17 @@ class BusinessCardAppScreen extends StatelessWidget {
 
   Container CircleGradient() {
     return Container(
-              width: 300,
-              height: 300,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: RadialGradient(
-                  colors: [
-                    accentColor.withValues(alpha: .1),
-                    accentColor.withValues(alpha: 0),
-                  ],
-                ),
-              ),
-            );
+      width: 300,
+      height: 300,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: RadialGradient(
+          colors: [
+            accentColor.withValues(alpha: .1),
+            accentColor.withValues(alpha: 0),
+          ],
+        ),
+      ),
+    );
   }
 }
